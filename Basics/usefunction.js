@@ -1,0 +1,5 @@
+const sm=require('./Add')
+let c=sm.total(10,50)
+let d=sm.subtract(30,60)
+console.log("Sum is "+c)
+console.log("Subtract is "+d)
