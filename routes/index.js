@@ -3,8 +3,11 @@ const router=express.Router();
 const st=require('../controller/Student')
 const th=require('../controller/Teacher')
 const cr=require('../controller/course')
-
-
+const lg=require('../controller/Login')
+const rg=require('../controller/Register')
+router.use(express.json());
+router.post('/logincheck',lg.login)
+router.post('/registeruser',rg.register)
 router.get('/getStudentList',st.getStudentList)
 router.post('/insertstudent',st.insertStudent)
 router.put('/updatestudent/:id',st.updateStudent)
