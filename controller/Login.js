@@ -1,4 +1,5 @@
 const database = require('../database/db');
+const jw=require('./Auth');
 const login=async(req,res)=>{
     try{
         console.log(req.body);
@@ -10,10 +11,12 @@ const login=async(req,res)=>{
             
            if(user.password==req.body.password)
              { 
+                const token=jw.generateToken({data:req.body.username});
                  console.log("Login Successful");
                  res.send({
                     "status":"Login Successful",
                     "statuscode":200,
+                    "token":token,
                     "data":user
                  })
              }
