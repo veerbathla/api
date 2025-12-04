@@ -9,7 +9,7 @@ router.use(express.json());
 
 /**
  * @swagger
- * /login:
+ * /logincheck:
  *   post:
  *     summary: User Login
  *     tags: [Authentication]
@@ -46,7 +46,7 @@ router.post('/logincheck',lg.login)
 
 /**
  * @swagger
- * /register:
+ * /registeruser:
  *   post:
  *     summary: Register a new user
  *     tags: [Authentication]
