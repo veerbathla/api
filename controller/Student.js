@@ -1,25 +1,36 @@
 
 const database = require('../database/db');
 const jw=require('./Auth');
+const jwt = require('jsonwebtoken');
+
 const getStudentList = async (req, res) => {
     try {
-        const resultnew=jw.verify(req.body.token);
-        if(!resultnew.valid)
-            {
-                return res.status(401).send({"message":"Invalid Token",error:result.message});
-            }
-            else
-            {
+        const token = req.body.token;
+        if (!token) {
+            return res.status(401).json({ message: "No token provided" });
+        }
+
+        let decoded;
+        try {
+            decoded = jwt.verify(token, 'veerbathla@1234'); // replace with your JWT secret
+        } catch (err) {
+            return res.status(401).json({ message: "Invalid token", error: err.message });
+        }
+
         const db = await database();
         const collection = db.collection("apiii");
         const result = await collection.find().toArray();
-        res.send(result);
-            }
-    }
-    catch (err) {
-        res.send(err);
+
+        console.log(result); // <--- This will now show data on the server console
+        res.status(200).json(result);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server error", error: err.message });
     }
 };
+
+
 
 const insertStudent = async (req, res) => {
     try {

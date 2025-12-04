@@ -1,7 +1,7 @@
 const jwt=require('jsonwebtoken');
 const secretKey="veerbathla@1234";
 function generateToken(payload){
-    return jwt.sign(payload,secretKey,{expiresIn:'1h'});
+    return jwt.sign(payload,secretKey,{expiresIn:'24h'});
 }
 function verifyToken(token)
 {

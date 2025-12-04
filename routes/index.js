@@ -108,7 +108,7 @@ router.post('/registeruser',rg.register)
  *         description: Invalid Token
  */
  
-router.get('/getStudentList',st.getStudentList)
+router.post('/getStudentList',st.getStudentList)
 
 /**
  * @swagger
